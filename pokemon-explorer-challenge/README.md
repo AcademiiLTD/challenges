@@ -32,6 +32,7 @@ pokemon-explorer-challenge/
 ├── .gitignore
 └── README.md # This file
 ```
+
 ## Getting Started
 
 Clone and install dependencies
@@ -68,10 +69,7 @@ Implement the `fetchPokemon()` function in `frontend/pages/index.js`:
 
 ## Timebox & Workflow
 
-You will be presenting your solution on Monday 30th of June, AM
-
-You time will be sent to you in due course.
-
+You will be presenting your solution on Monday 30th of June, AM and your time will be sent to you in due course.
 Make small, descriptive commits as you go (e.g., "feat: stubbed pokemon route", "fix: add loading state").
 
 ## Evaluation Criteria
