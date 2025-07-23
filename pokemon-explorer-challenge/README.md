@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Welcome to the Pokémon Explorer challenge! In this exercise, you'll build a minimal full-stack application that allows users to search for Pokémon by name and display their basic information.
+Welcome to the Pokémon Explorer challenge! In this exercise, you'll be adding functionality to a minimal full-stack application that allows users to search for Pokémon by name and display their basic information (https://pokeapi.co/).
 
 **Why this challenge?** This exercise evaluates your skills in:
 
@@ -35,13 +35,11 @@ pokemon-explorer-challenge/
 
 ## Getting Started
 
-Clone and install dependencies
-git clone git@github.com:your-org/pokemon-explorer-challenge.git
-cd pokemon-explorer-challenge
+Dependencies are preinstalled
 In one terminal: launch backend
-cd backend && npm install && npm start
+cd backend && npm start
 In another terminal: launch frontend
-cd frontend && npm install && npm run dev
+cd frontend && npm run dev
 
 The backend will run on http://localhost:3001
 The frontend will run on http://localhost:3000
@@ -69,29 +67,28 @@ Implement the `fetchPokemon()` function in `frontend/pages/index.js`:
 
 ## Timebox & Workflow
 
-You will be presenting your solution on Monday 30th of June, AM and your time will be sent to you in due course.
+You will be presenting your solution at the end of the challenge.
 Make small, descriptive commits as you go (e.g., "feat: stubbed pokemon route", "fix: add loading state").
 
 ## Evaluation Criteria
 
 | Criterion               | What to Show                                                     |
 | ----------------------- | ---------------------------------------------------------------- |
-| Spec Understanding      | Asks about input validation, 404 vs. network errors              |
-| Code Organization       | Clear separation of route logic vs. helpers; component structure |
+| Code Organisation       | Clear separation of route logic vs. helpers; component structure |
 | Error Handling          | Handles non-200 responses, invalid input gracefully              |
 | React Patterns          | Correct use of hooks; avoids unnecessary re-renders              |
 | UX States               | Loading spinner/text; disabled button; clear error messaging     |
-| Communication & Process | Verbalizes trade-offs; sketches data flow                        |
+| Communication & Process | Verbalise trade-offs; sketche data flow                          |
 | (Bonus) Testing         | One small unit test for backend or frontend                      |
 
 ## Tips & Hints
 
 - **Stub First**: Return hard-coded JSON so you can wire UI to API quickly.
 - **Incremental**: Swap in real fetch logic only after stub is working.
-- **Ask Questions**: Clarify edge cases—capitalization, timeouts, caching.
+- **Ask Questions**: Clarify edge cases—capitalisation, timeouts, caching.
 
 ## Submission
 
-When time is up, push your solution to a feature branch and share the link. Be prepared to walk through your solution and discuss your approach.
+When time is up be prepared to walk through your solution and discuss your approach.
 
 Good luck!
