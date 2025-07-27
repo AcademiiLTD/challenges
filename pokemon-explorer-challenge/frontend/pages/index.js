@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [query, setQuery] = useState("");
@@ -14,8 +14,16 @@ export default function Home() {
    * 4. Handle error state (Pokemon not found, network errors, etc.)
    */
   const fetchPokemon = async () => {
-    // TODO: Implement this function
-    alert("Not implemented yet!");
+    setLoading(true);
+
+    try {
+      const res = await fetch(`http://localhost:3001/api/pokemon/${query}`);
+      console.log("RES: ", res);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
