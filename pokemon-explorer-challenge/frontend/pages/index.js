@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+const invalidRegexp = /[^\w\s\-]/;
 
 export default function Home() {
   const [query, setQuery] = useState("");
@@ -16,9 +18,24 @@ export default function Home() {
   const fetchPokemon = async () => {
     setLoading(true);
 
+    setPokemon(null);
+    setError(null);
     try {
-      const res = await fetch(`http://localhost:3001/api/pokemon/${query}`);
-      console.log("RES: ", res);
+      if (invalidRegexp.test(query)) {
+        setError(
+          "Pokemon names may only contain alphanumeric characters or hyphens (-)"
+        );
+        return;
+      }
+      const res = await fetch(
+        `http://localhost:3001/api/pokemon/${query.trim()}`
+      );
+      const data = await res.json();
+      if (res.ok) {
+        setPokemon(data);
+      } else {
+        setError(data.error);
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -47,8 +64,31 @@ export default function Home() {
         </button>
       </div>
 
+      {loading && (
+        <div
+          style={{
+            border: "1px solid #ddd",
+            borderRadius: "4px",
+            padding: "20px",
+          }}
+        >
+          {" "}
+          Loading...{" "}
+        </div>
+      )}
+
       {error && (
-        <div style={{ color: "red", marginBottom: "20px" }}>{error}</div>
+        <div
+          style={{
+            color: "red",
+            marginBottom: "20px",
+            border: "1px solid #ddd",
+            borderRadius: "4px",
+            padding: "20px",
+          }}
+        >
+          {error}
+        </div>
       )}
 
       {pokemon && (
@@ -68,7 +108,12 @@ export default function Home() {
             />
           )}
           <div>
-            <strong>Types:</strong> {pokemon.types?.join(", ")}
+            <strong>Types:</strong>{" "}
+            <ul>
+              {pokemon.types.map((type) => {
+                return <li>{type}</li>;
+              })}
+            </ul>
           </div>
         </div>
       )}
