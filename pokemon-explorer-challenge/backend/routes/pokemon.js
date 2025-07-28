@@ -17,7 +17,21 @@ const router = express.Router();
  */
 router.get("/:name", async (req, res) => {
   // TODO: Implement this route handler
-  res.status(501).json({ error: "Not implemented" });
+  const data = await fetch(
+    `https://pokeapi.co/api/v2/pokemon/${req.params.name}`
+  );
+  const response = data.status;
+  if (data.ok) {
+    const { name, sprites, types } = await data.json();
+    const { front_default } = sprites;
+    const type_array = types.map((type) => type.type.name);
+    res.status(200).json({ name, sprite: front_default, types: type_array });
+  }
+  switch (response) {
+    case 404:
+      res.status(404).json({ message: "Pokemon not found" });
+      break;
+  }
 });
 
 export default router;

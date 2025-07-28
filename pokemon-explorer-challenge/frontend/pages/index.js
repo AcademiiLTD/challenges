@@ -18,9 +18,16 @@ export default function Home() {
 
     try {
       const res = await fetch(`http://localhost:3001/api/pokemon/${query}`);
+      const response = await res.json();
+      if (response.ok) {
+        setPokemon(response);
+      } else {
+        throw new Error(res);
+      }
       console.log("RES: ", res);
     } catch (err) {
-      console.error(err);
+      const message = await error.res;
+      setError(message);
     } finally {
       setLoading(false);
     }
