@@ -14,8 +14,36 @@ export default function Home() {
    * 4. Handle error state (Pokemon not found, network errors, etc.)
    */
   const fetchPokemon = async () => {
-    // TODO: Implement this function
-    alert("Not implemented yet!");
+    try {
+      setPokemon(null);
+      setLoading(true);
+      setError(null);
+
+      if (!query.trim()) {
+        setError("Please enter a pokemon name");
+        return;
+      }
+
+      const response = await fetch(
+        `http://localhost:3001/api/pokemon/${query}`
+      );
+
+      if (!response.ok) {
+        setLoading(false);
+        throw new Error("An error has occurred in response");
+      }
+
+      const data = await response.json();
+
+      console.log(data);
+
+      setPokemon(data);
+      console.log(pokemon);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setError(error.message || "An error has occurred");
+    }
   };
 
   return (
@@ -60,7 +88,7 @@ export default function Home() {
             />
           )}
           <div>
-            <strong>Types:</strong> {pokemon.types?.join(", ")}
+            <strong>Types:</strong> {pokemon.types}
           </div>
         </div>
       )}
