@@ -88,7 +88,7 @@ export default function Home() {
             />
           )}
           <div>
-            <strong>Types:</strong> {pokemon.types}
+            <strong>Types:</strong> {pokemon.types.join(",")}
           </div>
         </div>
       )}
