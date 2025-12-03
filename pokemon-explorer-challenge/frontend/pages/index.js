@@ -15,7 +15,15 @@ export default function Home() {
    */
   const fetchPokemon = async () => {
     // TODO: Implement this function
-    alert("Not implemented yet!");
+    setLoading(true);
+    const response = await fetch(`http://localhost:3001/api/pokemon/${query}`);
+    if (response) {
+      const resJson = await response.json();
+      setPokemon(resJson.data);
+      setLoading(false);
+    } else {
+      setError("Pokemon Not Found");
+    }
   };
 
   return (

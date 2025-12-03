@@ -17,7 +17,25 @@ const router = express.Router();
  */
 router.get("/:name", async (req, res) => {
   // TODO: Implement this route handler
-  res.status(501).json({ error: "Not implemented" });
+  const { name } = req.params;
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  const resJson = await response.json();
+  if (response) {
+    let types = [];
+    resJson.types.forEach((element) => {
+      types.push(element.type.name);
+    });
+    res.status(200).json({
+      status: true,
+      data: {
+        name: resJson.name,
+        sprite: resJson.sprites.front_default || resJson.sprites[0],
+        types: types,
+      },
+    });
+  } else {
+    res.status(501).json({ error: "Not implemented" });
+  }
 });
 
 export default router;
