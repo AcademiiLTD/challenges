@@ -6,6 +6,8 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  /* 
+
   /**
    * TODO: Implement this function to:
    * 1. Call your backend API at http://localhost:3001/api/pokemon/{name}
@@ -13,14 +15,33 @@ export default function Home() {
    * 3. Handle success state (set pokemon data)
    * 4. Handle error state (Pokemon not found, network errors, etc.)
    */
-  const fetchPokemon = async () => {
+  const fetchPokemon = async (e) => {
+    e.preventDefault();
     setLoading(true);
+    setError(null)
+
+    if (!query.trim()) {
+      setError("Please enter a pokemon name")
+    }
 
     try {
       const res = await fetch(`http://localhost:3001/api/pokemon/${query}`);
       console.log("RES: ", res);
+
+      if (!res.ok) {
+        err = await res.json();
+        throw new Error(err.message || "Failed to fetch pokemon");
+      }
+
+      if (res.ok) {
+        const data = await res.json();
+        setPokemon(data.data);
+        console.log("DATA:", data)
+        console.log(pokemon)
+      }
     } catch (err) {
       console.error(err);
+      setError(err.message || "An error has occurred with fetching")
     } finally {
       setLoading(false);
     }
