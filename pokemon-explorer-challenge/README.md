@@ -50,11 +50,11 @@ The frontend will run on http://localhost:3000
 
 Implement the GET `/api/pokemon/:name` endpoint in `backend/routes/pokemon.js`:
 
-1. Fetch Pokémon data from the PokeAPI (https://pokeapi.co/api/v2/pokemon/{name})
+1. Fetch Pokémon data from the PokeAPI (https://pokeapi.co/api/v2/pokemon/{name}) done
 2. Transform the response to include only:
-   - name
-   - sprite (front_default image URL)
-   - types (array of type names)
+   - name done
+   - sprite (front_default image URL) done
+   - types (array of type names) - done
 3. Handle errors appropriately (404 for Pokémon not found, 500 for server errors)
 
 ### Frontend Task

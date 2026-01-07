@@ -17,13 +17,13 @@ export default function Home() {
    */
   const fetchPokemon = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setLoading(false);
     setError(null)
 
     if (!query.trim()) {
       setError("Please enter a pokemon name")
     }
-
+    setLoading(true);
     try {
       const res = await fetch(`http://localhost:3001/api/pokemon/${query}`);
       console.log("RES: ", res);
